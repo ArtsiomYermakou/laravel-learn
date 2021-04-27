@@ -27,6 +27,27 @@ Route::get('/home', function () {
     return view('home', compact('res', 'name'));
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
+
+//Route::post('/send-email', function () {
+//    if (!empty($_POST)) {
+//        dump($_POST);
+//    }
+//    return 'Send Email';
+//});
+
+//Route::match(['post', 'get'], '/contact', function () {
+//    if (!empty($_POST)) {
+//        dump($_POST);
+//    }
+//    return view('/contact');
+//});
+
+
+Route::match(['post', 'get'], '/contact', function () {
+    if (!empty($_POST)) {
+        dump($_POST);
+    }
+    return view('/contact');
+})->name('contact');
+
+Route::permanentRedirect('/about', '/contact');
